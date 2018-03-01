@@ -2,37 +2,35 @@ package springBoot.Contrlooer;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import springBoot.bean.JsonResult;
 import springBoot.bean.User;
 import springBoot.service.UserService;
 
-@RestController
+@Controller
 public class UserController {
 	@Autowired
 	private UserService userService;
 
-	@RequestMapping("/users")
-	public ResponseEntity<JsonResult> getUserList() {
-		JsonResult r = new JsonResult();
-		try {
-			List<User> users = userService.getUserList();
-			r.setResult(users);
-			r.setStatus("ok");
-		} catch (Exception e) {
-			r.setResult(e.getClass().getName() + ":" + e.getMessage());
-			r.setStatus("error");
-			e.printStackTrace();
+	@RequestMapping("/addUser")
+	public String addUser(HttpServletRequest request) {
+		String uName=request.getParameter("uName");
+		String uPassword=request.getParameter("uPassword");
+		String uPassword2=request.getParameter("uPassword2");
+		if (uPassword.equals(uPassword2)) {
+			User user=new User(uName, uPassword);
+			userService.addUser(user);
 		}
-		return ResponseEntity.ok(r);
+		return null;
+		
 	}
 	
 	 @RequestMapping("/")

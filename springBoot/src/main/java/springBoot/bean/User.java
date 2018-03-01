@@ -1,24 +1,37 @@
 package springBoot.bean;
 
 public class User {
-	private String name;
-	private String sex;
-	public String getName() {
-		return name;
+	private int uId;
+	private String uName;
+	private String uPassword;
+	public int getuId() {
+		return uId;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setuId(int uId) {
+		this.uId = uId;
 	}
-	public String getSex() {
-		return sex;
+	public String getuName() {
+		return uName;
 	}
-	public void setSex(String sex) {
-		this.sex = sex;
+	public void setuName(String uName) {
+		this.uName = uName;
 	}
-	public User(String name, String sex) {
+	public String getuPassword() {
+		return uPassword;
+	}
+	public void setuPassword(String uPassword) {
+		this.uPassword = uPassword;
+	}
+	public User(int uId, String uName, String uPassword) {
 		super();
-		this.name = name;
-		this.sex = sex;
+		this.uId = uId;
+		this.uName = uName;
+		this.uPassword = uPassword;
+	}
+	public User(String uName, String uPassword) {
+		super();
+		this.uName = uName;
+		this.uPassword = uPassword;
 	}
 	
 }
